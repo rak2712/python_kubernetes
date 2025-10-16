@@ -8,4 +8,4 @@ def hello():
     return "Hello World from Flask!"
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5005)  # Change port here
+    app.run(host='0.0.0.0', port=5006)  # Change port here

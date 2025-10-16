@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = "rakshith3/hello-world-python"
-        SERVICE_PORT = "5005"
+        SERVICE_PORT = "5006"
         GIT_COMMIT = ''
         IMAGE_TAG = ''
         INGRESS_HOSTNAME = "hello-python.example.com"  // Replace with your domain
