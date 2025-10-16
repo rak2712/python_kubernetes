@@ -21,7 +21,7 @@ pipeline {
                 // Use checkout with CloneOption for shallow clone instead of git step
                 checkout([$class: 'GitSCM',
                           branches: [[name: 'refs/heads/main']],
-                          userRemoteConfigs: [[url: 'https://github.com/rak2712/hello-world-python.git']],
+                          userRemoteConfigs: [[url: 'https://github.com/rak2712/python_kubernetes.git']],
                           extensions: [[$class: 'CloneOption', depth: 1, shallow: true]]])
             }
             post {
