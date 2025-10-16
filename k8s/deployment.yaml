@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-python
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-python
+  template:
+    metadata:
+      labels:
+        app: hello-python
+    spec:
+      containers:
+      - name: hello-python
+        image: rakshith3/hello-world-python:latest  # will be updated dynamically in pipeline
+        ports:
+        - containerPort: 5005
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 5005
+          initialDelaySeconds: 5
+          periodSeconds: 10
