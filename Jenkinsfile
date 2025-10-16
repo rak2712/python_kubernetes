@@ -18,7 +18,11 @@ pipeline {
     stages {
         stage('Checkout Source') {
             steps {
-                git branch: 'main', url: 'https://github.com/rak2712/hello-world-python.git', depth: 1
+                // Use checkout with CloneOption for shallow clone instead of git step
+                checkout([$class: 'GitSCM',
+                          branches: [[name: 'refs/heads/main']],
+                          userRemoteConfigs: [[url: 'https://github.com/rak2712/hello-world-python.git']],
+                          extensions: [[$class: 'CloneOption', depth: 1, shallow: true]]])
             }
             post {
                 success {
@@ -75,8 +79,6 @@ pipeline {
         stage('Update Kubernetes Manifests') {
             steps {
                 echo "Updating image tag in deployment manifest"
-                // Update deployment manifest image tag dynamically using 'sed' or 'yq' (depending on your tooling)
-                // Here using 'sed' for example:
                 sh """
                     sed -i 's|image: ${IMAGE_NAME}:.*|image: ${IMAGE_NAME}:${IMAGE_TAG}|g' k8s/deployment.yaml
                 """
